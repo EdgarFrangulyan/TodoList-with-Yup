@@ -15,7 +15,6 @@ const Todo: FC = () => {
 
   const [todo, setTodo] = useState<TodoData[]>([])
   const [value, setValue] = useState<string>("")
-  const [open, setOpen] = useState<boolean>(false)
   const [show, setShow] = useState(null)
   const [editText, setEditText] = useState<string>("")
 
@@ -47,7 +46,7 @@ const Todo: FC = () => {
       text: value,
       id: id
     }])
-    const tasks = [...todo, { text: value }]
+    const tasks = [...todo, { text: value, id: id }]
     localStorage.setItem("todo", JSON.stringify(tasks))
     setValue("")
   }, [value, todo])
@@ -81,7 +80,7 @@ const Todo: FC = () => {
       return
     }
     todo.find((e) => e.text === data ? e.text = editText : null)
-    toast.success("Your task update", {
+    toast.success("Your task has been updated", {
       position: "top-left",
       autoClose: 2000
     })
@@ -91,9 +90,6 @@ const Todo: FC = () => {
     setEditText("")
   }, [todo, editText, show])
 
-  const singleTask = useCallback((text: string) => {
-console.log(text)
-  }, [])
 
   return (
 
@@ -107,10 +103,12 @@ console.log(text)
       <div className='tododiv'>
         {todo.length ? <>
           {todo.map((t, index) => (
-            <div onClick={() => singleTask(t.text)} className='todo' key={index}>
-              <span>{index + 1}: {t.text}</span>
-              <button onClick={() => handleDelete(t.id, )}><DeleteForeverRoundedIcon style={{ color: 'red', background: 'white', fontSize: 30 }} /></button>
-              <button onClick={() => handleShow(t.id)}><ModeEditOutlineRoundedIcon style={{ color: 'black', fontSize: 30 }} /></button>
+            <div key={t.id} className='todo'>
+              <span>{`${index + 1}: ${t.text}`}</span>
+              <div>
+                <button onClick={() => handleDelete(t.id)}><DeleteForeverRoundedIcon style={{ color: 'red', background: 'white', fontSize: 30 }} /></button>
+                <button onClick={() => handleShow(t.id)}><ModeEditOutlineRoundedIcon style={{ color: 'black', fontSize: 30 }} /></button>
+              </div>
               {show === t.id ?
                 <>
                   <input type='text' placeholder='New Task' value={editText} onChange={(ev) => setEditText(ev.target.value)} />

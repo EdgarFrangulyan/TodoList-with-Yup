@@ -8,9 +8,10 @@ import 'react-toastify/dist/ReactToastify.css';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
-    <App />
-  
+  <App />
+
 );
 
 reportWebVitals();

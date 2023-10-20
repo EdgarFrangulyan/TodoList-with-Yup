@@ -7,9 +7,7 @@ const App: FC = () => {
     <div className='container'>
       <BrowserRouter>
         <Routes>
-
           <Route path='/' element={<Todo />} />
-
         </Routes>
       </BrowserRouter>
     </div>
