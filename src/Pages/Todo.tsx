@@ -15,16 +15,16 @@ const Todo: FC = () => {
 
   const [todo, setTodo] = useState<TodoData[]>([])
   const [value, setValue] = useState<string>("")
+  const [open, setOpen] = useState<boolean>(false)
   const [show, setShow] = useState(null)
   const [editText, setEditText] = useState<string>("")
 
 
-
   useEffect(() => {
     const store = localStorage.getItem("todo")
-     if(store){
+    if (store) {
       setTodo(JSON.parse(store))
-     }
+    }
   }, [])
 
 
@@ -91,6 +91,10 @@ const Todo: FC = () => {
     setEditText("")
   }, [todo, editText, show])
 
+  const singleTask = useCallback((text: string) => {
+console.log(text)
+  }, [])
+
   return (
 
     <div className='main'>
@@ -103,9 +107,9 @@ const Todo: FC = () => {
       <div className='tododiv'>
         {todo.length ? <>
           {todo.map((t, index) => (
-            <div className='todo' key={t.id}>
+            <div onClick={() => singleTask(t.text)} className='todo' key={index}>
               <span>{index + 1}: {t.text}</span>
-              <button onClick={() => handleDelete(t.id)}><DeleteForeverRoundedIcon style={{ color: 'red', background: 'white', fontSize: 30 }} /></button>
+              <button onClick={() => handleDelete(t.id, )}><DeleteForeverRoundedIcon style={{ color: 'red', background: 'white', fontSize: 30 }} /></button>
               <button onClick={() => handleShow(t.id)}><ModeEditOutlineRoundedIcon style={{ color: 'black', fontSize: 30 }} /></button>
               {show === t.id ?
                 <>
@@ -121,7 +125,7 @@ const Todo: FC = () => {
           :
           <div className='emptyTask'>
             <h2>You have no current tasks</h2>
-            <span><EditCalendarOutlinedIcon style={{fontSize: 45}} /></span>
+            <span><EditCalendarOutlinedIcon style={{ fontSize: 45 }} /></span>
           </div>
         }
       </div>
