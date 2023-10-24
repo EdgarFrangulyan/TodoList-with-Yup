@@ -7,6 +7,12 @@
         flex-direction: column;
         align-items: center;
 
+        p {
+            color: red;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-style: italic;
+        }
+
         input {
             font-size: 25px;
             font-family: 'Courier New', Courier, monospace;
@@ -25,6 +31,9 @@
             border: none;
             background: transparent;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
         }
     }
 
@@ -94,6 +103,60 @@
                 cursor: pointer;
                 border: none;
             }
+        }
+    }
+}
+
+
+.tutDiv {
+    text-align: center;
+    border-radius: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 30px;
+    max-width: 1000px;
+    width: 450px;
+    margin: 0 auto;
+    margin-top: 10px;
+    box-shadow: 5px 10px 5px 10px rgb(205, 204, 204);
+
+    h2 {
+        font-style: italic;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        input {
+            font-style: italic;
+            margin: 15px;
+            font-size: 28px;
+            padding: 10px;
+            border-radius: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            cursor: pointer;
+            box-shadow: 5px 5px 5px 5px gray;
+            border: none;
+            background: transparent;
+        }
+
+        p {
+            color: rgb(164, 20, 20);
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 17px;
+            font-style: italic;
+        }
+
+        button {
+            font-family: 'Courier New', Courier, monospace;
+            background: transparent;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 4px 4px 4px 4px gray;
+            margin: 22px;
+            font-size: 22px;
+            cursor: pointer;
         }
     }
 }
